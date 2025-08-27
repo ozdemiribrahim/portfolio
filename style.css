@@ -1,0 +1,470 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.6;
+    background-color: #f0f0f0;
+    color: #000;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    cursor: default;
+}
+
+/* CSS Değişkenleri */
+:root {
+    /* Genel Radius Değerleri */
+    --radius-s: 16px;
+    --radius-m: 22px;
+    --radius-l: 32px;
+
+    /* Genel Boşluklar ve Paddingler */
+    --card-margin: 24px; /* Kartlar arası dış boşluk */
+    
+    /* Hero Section Yükseklikleri ve Boşluklar */
+    --hero-bg-height: 70vh; /* Arka plan görselinin yüksekliği */
+    --top-spacing: 30vh; /* Sayfanın üstünden bırakılacak boşluk (page-wrapper'ın padding-top'ı) */
+}
+
+/* Hero Section Arka Plan Görseli */
+.hero-background {
+    position: absolute;
+    top: 32px;
+    left: 32px;
+    width: calc(100vw - 64px);
+    height: var(--hero-bg-height);
+    background-image: url('img/Portfolio/comic-historical-illustration-03.PNG');
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+    z-index: -1;
+    filter: brightness(1) contrast(0.1);
+    border-radius: var(--radius-l);
+}
+
+/* Sayfa İçeriği Kapsayıcısı */
+.page-wrapper {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: var(--top-spacing) var(--card-margin) 40px var(--card-margin);
+    position: relative;
+    z-index: 1;
+    overflow: visible;
+}
+
+/* Başlık Bölümü */
+.page-header {
+    text-align: center;
+    max-width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.portfolio-logo {
+    width: 84px;
+    height: auto;
+    max-height: 153px;
+    display: block;
+    margin: 0 auto 48px auto;
+    transform: scale(1.1);
+}
+
+.page-header h1 {
+    font-size: 3.5em;
+    font-weight: 900;
+    color: #000;
+    line-height: 1;
+}
+
+.page-header .subtitle {
+    font-size: 2em;
+    font-weight: 400;
+    color: #000;
+    margin-bottom: 48px;
+}
+
+/* Portfolyo Grid Düzeni */
+.portfolio-grid {
+    position: relative;
+    width: 100%;
+    margin-bottom: var(--card-margin);
+}
+
+.social-links {
+    background: transparent;
+    position: absolute;
+    height: auto;
+    max-width: 100%;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 3;
+}
+
+.section-title {
+    font-size: 2em;
+    font-weight: 900;
+    color: #8d8d8d;
+    text-align: center;
+    margin: 48px 0 22px 0;
+}
+
+/* Portfolyo Kartları */
+.portfolio-card {
+    background-color: transparent;
+    border-radius: var(--radius-s);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    position: absolute;
+    cursor: pointer;
+    transition: box-shadow 0.2s cubic-bezier(.25,.8,.25,1), transform 0.18s cubic-bezier(.25,.8,.25,1);
+    overflow: hidden;
+    z-index: 1;
+    will-change: transform, box-shadow;
+}
+.portfolio-card:hover {
+    z-index: 10;
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 16px 32px rgba(0,0,0,0.18), 0 4px 8px rgba(0,0,0,0.12);
+}
+.portfolio-card:hover img {
+    transform: scale(1.04);
+    z-index: 1;
+}
+
+.portfolio-card img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    display: block;
+    transition: all 0.2s ease;
+    border-radius: var(--radius-s);
+}
+
+.portfolio-thumb-hover {
+    position: absolute !important;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: var(--radius-s);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 2;
+}
+
+.portfolio-card:hover .portfolio-thumb-hover {
+    opacity: 1;
+}
+
+/* Grid Size Classes */
+.portfolio-card.grid-size-1 {
+    grid-column: span 1;
+}
+
+.portfolio-card.grid-size-2 {
+    grid-column: span 2;
+}
+
+.portfolio-card.grid-size-3 {
+    grid-column: span 3;
+}
+
+.portfolio-card.grid-size-4 {
+    grid-column: span 4;
+}
+
+.other-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 16px;
+    margin-bottom: var(--card-margin);
+}
+.other-card {
+    background: transparent;
+    border-radius: var(--radius-s);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.1s ease-out, box-shadow 0.1s ease-out;
+    height: 180px;
+    overflow: hidden;
+    z-index: 1;
+    will-change: transform, box-shadow;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.other-card:hover {
+    z-index: 10;
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 16px 32px rgba(0,0,0,0.18), 0 4px 8px rgba(0,0,0,0.12);
+}
+.other-card:hover img {
+    transform: scale(1.04);
+    z-index: 1;
+}
+.other-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: all 0.2s ease;
+    border-radius: var(--radius-s);
+}
+
+.other-card .portfolio-social-links {
+    position: absolute;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 2;
+}
+
+.other-card {
+    position: relative; /* Social links positioning için gerekli */
+}
+
+.side-list {
+    margin-top: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.side-row {
+    display: flex;
+    background: rgb(201, 201, 201);
+    border-radius: var(--radius-s);
+    padding: 16px 22px;
+    font-size: 1.5em;
+    width: fit-content;
+    max-width: 100%;
+    min-height: 48px;
+    height: auto;
+    align-items: center;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+.side-row:hover {
+    transform: translateX(6px);
+}
+.side-row .arrow:hover  {
+    transform: translateX(6px);
+    background: rgba(0, 0, 0, 0.1);
+}
+.side-row .icon {
+    background: transparent;
+    min-height: 32px;
+    height: 32px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.side-row .icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+.side-title {
+    background-color: #FFA11D;
+    width: fit-content;
+    height: auto;
+    align-items: center;
+    font-weight: 900;
+    margin-right: 16px;
+    padding: 4px 8px;
+}
+.side-info {
+    width: auto;
+    height: auto;
+    flex: 1;
+    min-width: 0;
+}
+.side-row .hashtags {
+    flex: 1;
+    color: #888;
+    font-size: 0.95em;
+}
+.side-row .arrow {
+    padding: 5px;
+    position: relative;
+    background: transparent;
+    border-radius: 8px;
+    margin-left: 16px;
+    display: flex;
+    align-items: center;
+    transition: all 0.1s ease;
+}
+.side-row .side-icon svg {
+    width: 48px;
+    height: 48px;
+    display: block;
+    margin: auto 0;
+    margin-right: 16px;
+    color: #000;
+    fill: currentColor;
+}
+.side-row .arrow svg {
+    width: 32px;
+    height: 32px;
+    display: block;
+}
+
+.social-icon {
+    background: rgba(255, 255, 255, 0.4);
+    filter: invert();
+    color: #000;
+    border-radius: 8px;
+    width: 48px;
+    height: 48px;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.social-icon:hover {
+    background: rgba(255, 255, 255, 0.8);
+    filter: none;
+    transform: translateY(-8px);
+}
+
+/* Sosyal Medya Linkleri */
+.portfolio-social-links {
+    position: absolute;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 10;
+}
+
+.social-link {
+    background: rgba(255, 255, 255, 0.4);
+    filter: invert();
+    color: #000;
+    border-radius: 8px;
+    width: 48px;
+    height: 48px;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.social-link:hover {
+    background: rgba(255, 255, 255, 0.8);
+    filter: none;
+    transform: translateY(-8px);
+}
+
+.social-link svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* Hashtagler */
+.hashtags {
+    position: absolute;
+    bottom: var(--radius-s);
+    left: var(--radius-s);
+    right: var(--radius-s);
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 16px;
+    font-weight: 300;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 5px 10px;
+    border-radius: var(--radius-s);
+    z-index: 2;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* 2-3 sütun: tablet */
+@media (max-width: 1024px) {
+    .hero-background {
+        position: fixed;
+        margin: 0;
+        top: 0; left: 0;
+        width: 100vw;
+        height: 100vh;
+        filter: brightness(1.2) contrast(0.3) blur(3px);
+        border-radius: 0;
+    }
+    .page-wrapper {
+        padding: 16vh 16px 32px 16px;
+    }
+    .portfolio-grid {
+        column-count: 3;
+    }
+    .side-row {
+        width: 100%;
+    }
+    .other-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    .section-title {
+        color: #000;
+    }
+}
+
+/* 1 sütun: mobil */
+@media (max-width: 600px) {    
+    .hero-background {
+        display: none;
+    }
+    .portfolio-grid {
+        column-count: 2;
+    }
+    .portfolio-card {
+        width: 100%;
+        min-width: 0;
+        margin-bottom: 16px;
+    }
+    .page-wrapper {
+        padding: 8vh 24px;
+    }
+    .social-links {
+        gap: 8px;
+        bottom: 12px;
+    }
+    .social-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 12px;
+    }
+    .portfolio-logo {
+        width: 64px;
+        margin-bottom: 24px;
+    }
+    .page-header h1 {
+        font-size: 2em;
+    }
+    .page-header .subtitle {
+        font-size: 1.2em;
+        margin-bottom: 48px;
+    }
+    .side-row {
+        width: 100%;
+    }
+    .other-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .section-title {
+        font-size: 1.5em;
+        color: #000;
+    }
+}
