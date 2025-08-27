@@ -1,0 +1,22 @@
+# Development files - GitHub Pages'te görünmemeli
+*.bat
+*.md
+!README.md
+
+# System files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.temp
